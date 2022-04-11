@@ -38,6 +38,9 @@ jar {
     attributes += [ "Built-By": "${System.properties['user.name']}" ]
     attributes += [ "Java-Version": "${System.properties['java.version']}" ]
   }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }
 
 sourceSets {
